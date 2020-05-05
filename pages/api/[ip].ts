@@ -14,12 +14,14 @@ function validIP(ip: string) {
 }
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
+  res.setHeader('Access-Control-Allow-Origin', '*')
   try {
     console.log(req.headers)
     const ip = req.query.ip as string
     if (!ip || !validIP(ip)) throw new Error('Invalid ip address')
     const response = await fetch(`https://freegeoip.app/json/${ip}`, {
       method: 'get',
+      mode: 'no-cors',
       headers: {
         accept: 'application/json',
       },
