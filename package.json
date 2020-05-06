@@ -1,22 +1,13 @@
 {
   "name": "ip-info",
-  "version": "0.0.1",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
-  },
+  "version": "0.0.2",
+  "private": false,
+  "license": "Unlicense",
   "dependencies": {
-    "ipify": "^4.0.0",
-    "isomorphic-unfetch": "^3.0.0",
-    "next": "^9.3.6",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "@now/node": "^1.5.1",
+    "isomorphic-unfetch": "^3.0.0"
   },
   "devDependencies": {
-    "@types/node": "^13.13.4",
-    "@types/react": "^16.9.34",
     "typescript": "^3.8.3"
   }
 }
