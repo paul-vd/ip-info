@@ -1,0 +1,7 @@
+{
+  "builds": [{ "src": "/api/index.ts", "use": "@now/node" }],
+  "routes": [
+    { "src": "/(.*)", "dest": "/api/$1" },
+    { "src": "/", "dest": "/api/index.ts" }
+  ]
+}
