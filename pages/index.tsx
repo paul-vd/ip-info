@@ -12,8 +12,8 @@ App.getInitialProps = async ({ req, res }: PageContext) => {
   res.setHeader('Content-Type', 'application/json')
   res.setHeader('Access-Control-Allow-Origin', '*')
   try {
-    const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress
-    if (!ip) throw new Error('API error')
+    const ip = req.headers['x-forwarded-for']
+    if (!ip) throw new Error('No valid ip found')
     const response = await fetch(`https://freegeoip.app/json/${ip}`, {
       method: 'get',
       mode: 'no-cors',

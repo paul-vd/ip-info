@@ -930,6 +930,18 @@
   resolved "https://registry.yarnpkg.com/@next/react-refresh-utils/-/react-refresh-utils-9.3.6.tgz#a5eb91b4b8270fecb5fcf2d1319d8d04f0cf6f75"
   integrity sha512-XgxPc3WAkNpzD9xYtN4bd3wpV39WhnHYSwXGovVVcImXY6yn1as6hDgwkbuLADY/SHLIu2AI6CTVq0JDoTC/+g==
 
+"@now/go@^1.0.7":
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/@now/go/-/go-1.0.7.tgz#3532d2fd7ecf03f124bce68644e1b53e600ee9b5"
+  integrity sha512-9uAmFyNYaJzj8FXFGf8R8pywRRp0ScGFrP69dGrJhRJy1T/oQxnhiQcMc33nAKA/ydHFUYqu6SMSuZrHBsJ6Vw==
+
+"@now/node@^1.5.1":
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/@now/node/-/node-1.5.1.tgz#e0d559ea5d1efaa5cc8a7c35208aa6ad01634ab2"
+  integrity sha512-2nXhdqo4aNShHuTwbdQmZQX4jYXAoI85+FTPStD5DZVC3kbSS8m5RDxJu7Op7ffBPwIu8Nmp6ukjXct3Abad7g==
+  dependencies:
+    "@types/node" "*"
+
 "@sindresorhus/is@^0.14.0":
   version "0.14.0"
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.14.0.tgz#9fb3a3cf3132328151f353de4632e01e52102bea"
@@ -941,6 +953,11 @@
   integrity sha512-XIB2XbzHTN6ieIjfIMV9hlVcfPU26s2vafYWQcZHWXHOxiaRZYEDKEwdl129Zyg50+foYV2jCgtrqSA6qNuNSA==
   dependencies:
     defer-to-connect "^1.0.1"
+
+"@types/node@*":
+  version "13.13.5"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-13.13.5.tgz#96ec3b0afafd64a4ccea9107b75bf8489f0e5765"
+  integrity sha512-3ySmiBYJPqgjiHA7oEaIo2Rzz0HrOZ7yrNO5HWyaE5q0lQ3BppDZ3N53Miz8bw2I7gh1/zir2MGVZBvpb1zq9g==
 
 "@types/node@^13.13.4":
   version "13.13.4"
@@ -3520,6 +3537,11 @@ neo-async@^2.5.0, neo-async@^2.6.1:
   version "2.6.1"
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.1.tgz#ac27ada66167fa8849a6addd837f6b189ad2081c"
   integrity sha512-iyam8fBuCUpWeKPGpaNMetEocMt364qkCsfL9JuhjXX6dRnguRVOfk2GZaDpPjcOKiiXCPINZC1GczQ7iTq3Zw==
+
+net@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/net/-/net-1.0.2.tgz#d1757ec9a7fb2371d83cf4755ce3e27e10829388"
+  integrity sha1-0XV+yaf7I3HYPPR1XOPifhCCk4g=
 
 next-tick@~1.0.0:
   version "1.0.0"

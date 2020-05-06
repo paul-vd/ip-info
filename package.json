@@ -8,8 +8,11 @@
     "start": "next start"
   },
   "dependencies": {
+    "@now/go": "^1.0.7",
+    "@now/node": "^1.5.1",
     "ipify": "^4.0.0",
     "isomorphic-unfetch": "^3.0.0",
+    "net": "^1.0.2",
     "next": "^9.3.6",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
