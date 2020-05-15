@@ -15,6 +15,11 @@ export default async (req: NowRequest, res: NowResponse) => {
       xForwadedFor: req.headers['x-forwarded-for'],
     })
 
+    await fetch('https://api6.ipify.org').then(async (res) => {
+      const ipify = await res.text()
+      console.log({ ipify })
+    })
+
     if (process.env.NODE_ENV === 'development') {
       await fetch('https://api6.ipify.org').then(async (res) => (ip = await res.text()))
     }
