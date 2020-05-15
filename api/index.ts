@@ -3,16 +3,15 @@ import fetch from 'isomorphic-unfetch'
 
 async function getUserIP(req: NowRequest) {
   let ip: string = ''
-  if (!ip) {
-    const xForwadedFor = req.headers['x-forwarded-for']
-    if (xForwadedFor) {
-      if (typeof xForwadedFor === 'string') ip = xForwadedFor.split(',')[0]
-      else ip = xForwadedFor[0]
-    } else {
-      const realip = req.headers['x-forwarded-for']
-      if (realip && typeof realip === 'string') ip = realip.split(',')[0]
-      else ip = req.connection.remoteAddress || ''
-    }
+
+  const xForwadedFor = req.headers['x-forwarded-for']
+  if (xForwadedFor) {
+    if (typeof xForwadedFor === 'string') ip = xForwadedFor.split(',')[0]
+    else ip = xForwadedFor[0]
+  } else {
+    const realip = req.headers['x-forwarded-for']
+    if (realip && typeof realip === 'string') ip = realip.split(',')[0]
+    else ip = req.connection.remoteAddress || ''
   }
 
   if (!ip || process.env.NODE_ENV === 'development') await fetch('https://api6.ipify.org').then(async (res: any) => (ip = await res.text()))
