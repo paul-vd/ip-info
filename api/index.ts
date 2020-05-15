@@ -1,9 +1,22 @@
 import { NowRequest, NowResponse } from '@now/node'
 import fetch from 'isomorphic-unfetch'
 
-function GetUserIP(req: NowRequest): string {
-  console.log(req.headers)
-  return ''
+async function getUserIP(req: NowRequest) {
+  let ip: string = ''
+  if (!ip) {
+    const xForwadedFor = req.headers['x-forwarded-for']
+    if (xForwadedFor) {
+      if (typeof xForwadedFor === 'string') ip = xForwadedFor.split(',')[0]
+      else ip = xForwadedFor[0]
+    } else {
+      const realip = req.headers['x-forwarded-for']
+      if (realip && typeof realip === 'string') ip = realip.split(',')[0]
+      else ip = req.connection.remoteAddress || ''
+    }
+  }
+
+  if (!ip || process.env.NODE_ENV === 'development') await fetch('https://api6.ipify.org').then(async (res: any) => (ip = await res.text()))
+  return ip
 }
 
 export default async (req: NowRequest, res: NowResponse) => {
@@ -12,30 +25,10 @@ export default async (req: NowRequest, res: NowResponse) => {
     if (req.method !== 'GET') throw new Error('Only GET methods are allowed')
     const queryIp = req.query.ip
 
-    let ip = queryIp as any
+    let ip = queryIp as string
 
-    GetUserIP(req)
+    if (!ip) ip = await getUserIP(req)
 
-    if (!ip) {
-      ip = req.headers['x-forwarded-for']
-      if (typeof ip === 'string') ip = ip.split(',')[0]
-      else ip = ip[0]
-    }
-
-    if (!ip || process.env.NODE_ENV === 'development') {
-      await fetch('https://api6.ipify.org').then(async (res: any) => (ip = await res.text()))
-    }
-
-    console.log({
-      realIP: ip,
-      queryIp,
-      cfConnectionIp: req.headers['CF-Connecting-IP'],
-      xForwadedFor: req.headers['x-forwarded-for'],
-    })
-
-    // if (process.env.NODE_ENV === 'development') {
-    //   await fetch('https://api6.ipify.org').then(async (res) => (ip = await res.text()))
-    // }
     if (!ip) throw new Error('No valid ip found')
     const response = await fetch(`https://freegeoip.app/json/${ip}`, {
       method: 'get',
