@@ -9,15 +9,17 @@ export default async (req: NowRequest, res: NowResponse) => {
 
     let ip = queryIp || req.headers['x-forwarded-for'] || req.headers['CF-Connecting-IP']
 
+    const xForwadedFor = req.headers['x-forwarded-for']
+    let testxForwadedFor
+    if (typeof xForwadedFor === 'string') {
+      testxForwadedFor = xForwadedFor.split(',')[0]
+    }
+
     console.log({
       queryIp,
       cfConnectionIp: req.headers['CF-Connecting-IP'],
       xForwadedFor: req.headers['x-forwarded-for'],
-    })
-
-    await fetch('https://api6.ipify.org').then(async (res) => {
-      const ipify = await res.text()
-      console.log({ ipify })
+      testxForwadedFor,
     })
 
     if (process.env.NODE_ENV === 'development') {
