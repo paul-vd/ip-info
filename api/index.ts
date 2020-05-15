@@ -7,7 +7,7 @@ export default async (req: NowRequest, res: NowResponse) => {
     if (req.method !== 'GET') throw new Error('Only GET methods are allowed')
     const queryIp = req.query.ip
 
-    let ip = queryIp || req.headers['x-forwarded-for']
+    let ip = queryIp || req.headers['CF-Connecting-IP'] || req.headers['x-forwarded-for']
 
     if (process.env.NODE_ENV === 'development') {
       await fetch('https://api6.ipify.org').then(async (res) => (ip = await res.text()))
