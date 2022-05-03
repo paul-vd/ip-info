@@ -1,6 +1,18 @@
-import { NextResponse, NextRequest } from 'next/server'
+import { NextRequest } from 'next/server'
 
 export function middleware(request: NextRequest) {
   const country = request.geo?.country || 'ZA'
-  return NextResponse.json({ country_code: country, ip: request.ip, ...request.geo })
+
+  const body = {
+    ...request.geo,
+    country_code: country,
+    ip: request.ip,
+    ua: request.ua,
+  }
+
+  return new Response(JSON.stringify(body), {
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+    },
+  })
 }
