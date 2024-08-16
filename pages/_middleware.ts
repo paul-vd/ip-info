@@ -3,6 +3,8 @@ import { NextRequest } from 'next/server'
 export function middleware(request: NextRequest) {
   const country = request.geo?.country || 'ZA'
 
+  console.log('Hello World')
+
   const body = {
     ...request.geo,
     country_code: country,
